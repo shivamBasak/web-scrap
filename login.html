@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login/Signup</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="background">
+      <div id="formContainer">
+        <div id="formHeader">
+          <button class="toggleButton active" data-target="login">Login</button>
+          <button class="toggleButton" data-target="signup">Signup</button>
+        </div>
+        <div id="formContent">
+          <div id="loginForm" class="formPanel active">
+            <h2>Login</h2>
+            <form>
+              <label for="loginEmail">Email:</label>
+              <input
+                type="email"
+                id="loginEmail"
+                class="form-control"
+                placeholder="Email"
+                required
+              />
+              <label for="loginPassword">Password:</label>
+              <input
+                type="password"
+                id="loginPassword"
+                class="form-control"
+                placeholder="Password"
+                required
+              />
+              <button type="submit" class="btn">Login</button>
+            </form>
+          </div>
+          <div id="signupForm" class="formPanel">
+            <h2>Signup</h2>
+            <form>
+              <label for="signupName">Name:</label>
+              <input
+                type="text"
+                id="signupName"
+                class="form-control"
+                placeholder="Name"
+                required
+              />
+              <label for="signupEmail">Email:</label>
+              <input
+                type="email"
+                id="signupEmail"
+                class="form-control"
+                placeholder="Email"
+                required
+              />
+              <label for="signupPassword">Password:</label>
+              <input
+                type="password"
+                id="signupPassword"
+                class="form-control"
+                placeholder="Password"
+                required
+              />
+              <button type="submit" class="btn">Signup</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="login.js"></script>
+  </body>
+</html>
