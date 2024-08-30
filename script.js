@@ -1,5 +1,6 @@
 let menuIcon=document.querySelector('#menu-icon');
 let navbar=document.querySelector('.navbar');
+let toggleBtn =document.querySelector('.toggleBtn');
 
 menuIcon.onclick = () => {
     menuIcon.classList.toggle('bx-x');
@@ -47,3 +48,7 @@ const typed=new Typed('.multiple-text',{
     backDelay:1000,
     loop: true
     });
+
+    toggleBtn.onclick=function () {
+        body.classList.toggle('dark');
+    }
