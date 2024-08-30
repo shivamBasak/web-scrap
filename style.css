@@ -15,6 +15,13 @@
     --text-color: #130909;
     --main-color:rgb(139, 235, 242);
     }
+    .dark :root{
+        --bg-color:#ffffff;
+        --second-bg-color:#323946;
+        --text-color: #281e1e66;
+        --main-color:rgb(14, 192, 205);
+            
+    }
     html{
         font-size: 62.5%;
         overflow-x: hidden;
