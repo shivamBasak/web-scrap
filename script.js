@@ -41,14 +41,7 @@ ScrollReveal().reveal('.home-img,.education-content,.skills-column,.project-cont
 ScrollReveal().reveal('.home-content h1, .about-img', { origin:'left'});
 ScrollReveal().reveal('.home-content, .about-content', { origin:'right'});
 
-const typed=new Typed('.multiple-text',{
-    strings: ['Frontend Developer','Developer','UG at SNU','Coder','Engineer','Skepsis  member'],
-    typeSpeed:100,
-    backSpeed:100,
-    backDelay:1000,
-    loop: true
-    });
 
-    toggleBtn.onclick=function () {
+toggleBtn.onclick=function () {
         body.classList.toggle('dark');
     }
