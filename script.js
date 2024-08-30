@@ -1,140 +1,49 @@
-// Dark Mode Toggle
-const darkModeButton = document.getElementById("toggleDarkMode");
-const body = document.body;
+let menuIcon=document.querySelector('#menu-icon');
+let navbar=document.querySelector('.navbar');
 
-darkModeButton.addEventListener("click", () => {
-  body.classList.toggle("dark-mode");
-  const isDarkMode = body.classList.contains("dark-mode");
-  localStorage.setItem("darkMode", isDarkMode);
-});
+menuIcon.onclick = () => {
+    menuIcon.classList.toggle('bx-x');
+    navbar.classList.toggle('active');
+};
+let sections=document.querySelectorAll('section');
+let navLinks=document.querySelectorAll('header nav a');
 
-window.addEventListener("load", () => {
-  const darkMode = localStorage.getItem("darkMode") === "true";
-  if (darkMode) {
-    body.classList.add("dark-mode");
-  }
-});
+window.onscroll=() => {
+    sections.forEach(sec=>{
+        let top=window.scrollY;
+        let offset= sec.offsetTop - 150;
+        let height = sec.offsetHeight;
+        let id= sec.getAttribute('id');
 
-// Tutorial Overlay
-const tutorialOverlay = document.getElementById("tutorialOverlay");
-const startTutorialButton = document.getElementById("startTutorial");
-const nextStepButtons = document.querySelectorAll(".next-btn");
-const closeTutorialButton = document.getElementById("closeTutorial");
-const tutorialSteps = document.querySelectorAll(".tutorial-step");
-
-let currentStepIndex = 0;
-
-function showTutorialOverlay() {
-  tutorialOverlay.style.display = "flex";
-  currentStepIndex = 0;
-  showCurrentStep();
-}
-
-function showCurrentStep() {
-  tutorialSteps.forEach((step, index) => {
-    step.style.display = index === currentStepIndex ? "block" : "none";
-  });
-}
-
-function nextStep() {
-  currentStepIndex++;
-  if (currentStepIndex < tutorialSteps.length) {
-    showCurrentStep();
-  } else {
-    tutorialOverlay.style.display = "none";
-  }
-}
-
-function closeTutorial() {
-  tutorialOverlay.style.display = "none";
-}
-
-startTutorialButton.addEventListener("click", showTutorialOverlay);
-nextStepButtons.forEach((button) => button.addEventListener("click", nextStep));
-closeTutorialButton.addEventListener("click", closeTutorial);
-
-// Search Functionality
-const searchInput = document.getElementById("searchInput");
-const searchResults = document.getElementById("searchResults");
-
-searchInput.addEventListener("input", () => {
-  const query = searchInput.value.toLowerCase();
-  fetch("/search?query=" + encodeURIComponent(query))
-    .then((response) => response.json())
-    .then((data) => {
-      displaySearchResults(data.results);
+        if(top >=offset && top < offset + height){
+        navLinks.forEach(links => {
+            links.classList.remove('active');
+            document.querySelector('header nav a[href*='+ id+ ']').classList.add('active');
+        });
+      };
     });
-});
+    let header=document.querySelector('header');
+    header.classList.toggle('sticky', window.scrollY > 100); 
+    menuIcon.classList.remove('bx-x');
+    navbar.classList.remove('active');
+};
 
-function displaySearchResults(results) {
-  searchResults.innerHTML = "";
-  if (results.length === 0) {
-    searchResults.innerHTML = "<p>No results found.</p>";
-  } else {
-    results.forEach((result) => {
-      const item = document.createElement("div");
-      item.className = "search-result-item";
-      item.innerHTML = `<h3>${result.title}</h3><p>${result.description}</p>`;
-      searchResults.appendChild(item);
+
+ScrollReveal({ 
+    //reset: true,
+    distance:'80px',
+    duration: 2000,
+    delay: 200
+});
+ScrollReveal().reveal('.home-content, .heading', { origin:'top'});
+ScrollReveal().reveal('.home-img ', { origin:'bottom'});
+ScrollReveal().reveal('.home-content h1, .about-img', { origin:'left'});
+ScrollReveal().reveal('.home-content, .about-content', { origin:'right'});
+
+const typed=new Typed('.multiple-text',{
+    strings: ['Indian Player','All rounder','Legend','Cancer Fighter','Fastest 50 in T20 World Cup','Man of the Tournament in the ICC Cricket World Cup 2011.','Arjuna','Padma Shri'],
+    typeSpeed:100,
+    backSpeed:100,
+    backDelay:1000,
+    loop: true
     });
-  }
-}
-
-// Chatbox Interaction
-const chatInput = document.getElementById("chatInput");
-const sendChatButton = document.getElementById("sendChat");
-const chatbox = document.querySelector(".chatbox");
-
-sendChatButton.addEventListener("click", () => {
-  const message = chatInput.value.trim();
-  if (message) {
-    appendMessage("user", message);
-    chatInput.value = "";
-    fetch("/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        appendMessage("bot", data.reply);
-      });
-  }
-});
-
-function appendMessage(sender, message) {
-  const messageDiv = document.createElement("div");
-  messageDiv.className = `${sender}-message`;
-  messageDiv.textContent = message;
-  chatbox.appendChild(messageDiv);
-  chatbox.scrollTop = chatbox.scrollHeight;
-}
-
-// Profile Update
-const profileUpdateButton = document.getElementById("profileUpdate");
-const profileNameInput = document.getElementById("profileName");
-const profilePhotoInput = document.getElementById("profilePhoto");
-const profileSection = document.querySelector(".profile");
-
-profileUpdateButton.addEventListener("click", () => {
-  const name = profileNameInput.value.trim();
-  const photo = profilePhotoInput.files[0];
-  if (name && photo) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      profileSection.innerHTML = `
-                <h2>${name}</h2>
-                <img src="${reader.result}" alt="Profile Photo" style="width: 100px; height: 100px; border-radius: 50%;">
-            `;
-    };
-    reader.readAsDataURL(photo);
-  }
-});
-
-// Initialize dark mode on page load
-document.addEventListener("DOMContentLoaded", () => {
-  const darkMode = localStorage.getItem("darkMode") === "true";
-  if (darkMode) {
-    body.classList.add("dark-mode");
-  }
-});
