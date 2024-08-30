@@ -1,6 +1,13 @@
 let menuIcon=document.querySelector('#menu-icon');
 let navbar=document.querySelector('.navbar');
-let toggleBtn =document.querySelector('.toggleBtn');
+const darkModeButton = document.getElementById("toggleDarkMode");
+const body = document.body;
+
+darkModeButton.addEventListener("click", () => {
+  body.classList.toggle("dark-mode");
+  const isDarkMode = body.classList.contains("dark-mode");
+  localStorage.setItem("darkMode", isDarkMode);
+});
 
 menuIcon.onclick = () => {
     menuIcon.classList.toggle('bx-x');
@@ -42,6 +49,3 @@ ScrollReveal().reveal('.home-content h1, .about-img', { origin:'left'});
 ScrollReveal().reveal('.home-content, .about-content', { origin:'right'});
 
 
-toggleBtn.onclick=function () {
-        body.classList.toggle('dark');
-    }
