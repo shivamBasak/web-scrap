@@ -36,12 +36,12 @@ ScrollReveal({
     delay: 200
 });
 ScrollReveal().reveal('.home-content, .heading', { origin:'top'});
-ScrollReveal().reveal('.home-img ', { origin:'bottom'});
+ScrollReveal().reveal('.home-img,.education-content,.skills-column,.project-container,.certificate-box,.contact form', { origin:'bottom'});
 ScrollReveal().reveal('.home-content h1, .about-img', { origin:'left'});
 ScrollReveal().reveal('.home-content, .about-content', { origin:'right'});
 
 const typed=new Typed('.multiple-text',{
-    strings: ['Indian Player','All rounder','Legend','Cancer Fighter','Fastest 50 in T20 World Cup','Man of the Tournament in the ICC Cricket World Cup 2011.','Arjuna','Padma Shri'],
+    strings: ['Frontend Developer','Developer','UG at SNU','Coder','Engineer','Skepsis  member'],
     typeSpeed:100,
     backSpeed:100,
     backDelay:1000,
