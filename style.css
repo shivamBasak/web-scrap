@@ -499,13 +499,12 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #555;
+    background: #f5f1f1;
     cursor: pointer;
-    box-shadow: 5px 5px 10px rgba(0,0 , 0,0.1), 
-    -5px -5px 10px #fff ;
+   
 }
 .dark .toggleBtn{
-    background: #edf1f4;
+  
     border: 2px solid rgba(0, 0, 0, 0.1);
     box-shadow: 5px 5px 10px rgba(0,0 , 0,0.1), 
     -5px -5px 10px rgba(255,255,255,0.2) ;
